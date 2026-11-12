@@ -2,6 +2,7 @@ import 'dart:math';
 
 
 import 'package:flutter/material.dart';
+import 'package:lab3bmi/info.dart';
 
 
 void main() {
@@ -51,6 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
   double _bmi = 0.0;
   String _bmiImage = "assets/images/empty.png";
   String _bmiOutput = "";
+
+
 
 
   final _weightCtrl = TextEditingController();
@@ -144,7 +147,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(Icons.info),
                 iconSize: 48.0,
                 color: Colors.orangeAccent,
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Info(bmi: _bmiOutput,)),
+                  ).then((value){
+                    if(value !=null){
+                      setState(() { _bmiOutput = value;});
+                    }
+                  }
+                  );
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
